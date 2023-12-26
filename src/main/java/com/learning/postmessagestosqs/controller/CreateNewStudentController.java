@@ -3,6 +3,7 @@ package com.learning.postmessagestosqs.controller;
 import com.learning.postmessagestosqs.dto.NewStudentRequest;
 import com.learning.postmessagestosqs.exception.BadRequestException;
 import com.learning.postmessagestosqs.service.StudentDetailsService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +29,7 @@ public class CreateNewStudentController {
 
 
     @PostMapping(value = "/newstudents")
-    public ResponseEntity<?> createNewStudents(@RequestBody List<NewStudentRequest> newStudents) throws Exception {
+    public ResponseEntity<?> createNewStudents(@RequestBody @Valid List<NewStudentRequest> newStudents) throws Exception {
 
         for (NewStudentRequest newStudent : newStudents) {
 
