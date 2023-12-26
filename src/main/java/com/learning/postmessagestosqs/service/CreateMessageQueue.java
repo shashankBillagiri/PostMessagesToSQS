@@ -13,7 +13,8 @@ import org.springframework.stereotype.Service;
 public class CreateMessageQueue {
 
     @Value("${app.config.create.student.queue}")
-    private String messageQueueTopic;
+    private String messageQueueName;
+
     private final AmazonSQS amazonSQSClient;
 
 
@@ -21,7 +22,7 @@ public class CreateMessageQueue {
 
     public void createMessageQueue() {
         CreateQueueRequest request = new CreateQueueRequest();
-        request.setQueueName(messageQueueTopic);
+        request.setQueueName(messageQueueName);
         try {
             CreateQueueResult queue = amazonSQSClient.createQueue(request);
             System.out.println("Queue Url is :"+queue.getQueueUrl());
