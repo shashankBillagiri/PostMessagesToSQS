@@ -6,6 +6,7 @@ import com.learning.postmessagestosqs.service.StudentDetailsService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,7 +44,7 @@ public class CreateNewStudentController {
 
        studentDetailsService.sendMessageToSQS(newStudents);
 
-        return ResponseEntity.accepted().body(null);
+        return ResponseEntity.status(HttpStatus.CREATED).body(" Records Posted To the Queue For Processing");
 
     }
 }
